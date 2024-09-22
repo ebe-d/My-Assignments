@@ -1,0 +1,48 @@
+<html>
+    <body>
+        <input type="text" placeholder="Enter Pokemon Name" id="pokemonname">
+        <button onclick="fetchdata()">Fetch Info</button>
+        <img src="" alt="pokemonsprite" id="pokemonsprite" style="display:none; align-items: center;"/>
+        <br>
+        <br>
+        <span id="errormessage"></span>
+    </body>
+    <script>
+        async function fetchdata() {
+
+            const pokemonname=document.getElementById("pokemonname").value.toLowerCase();
+            if (pokemonname == "humam") {
+                const imghum = document.getElementById("pokemonsprite");
+                imghum.src = "humam.png";
+                imghum.style.display = "block"; 
+                document.getElementById("errormessage").innerHTML = ""; 
+                return; 
+            }
+
+            try {
+                const response=await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonname}`)
+                
+                if (!response.ok){
+                    throw new Error("Could not fetch source")
+                }
+
+
+
+                const data=await response.json()
+                const pokemonsprites=data.sprites.front_default;
+                const imgelement=document.getElementById("pokemonsprite")
+                imgelement.src=pokemonsprites;
+                imgelement.style.display="block";
+
+                
+            } catch (error) {
+              
+               
+                document.getElementById("errormessage").innerHTML=`${pokemonname.value} cannot be found`;
+                
+            }
+            
+        } 
+
+    </script>
+</html>
