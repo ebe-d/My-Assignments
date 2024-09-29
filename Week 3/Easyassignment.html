@@ -1,48 +1,53 @@
 <html>
     <body>
-        <input type="text" placeholder="Enter Pokemon Name" id="pokemonname">
-        <button onclick="fetchdata()">Fetch Info</button>
-        <img src="" alt="pokemonsprite" id="pokemonsprite" style="display:none; align-items: center;"/>
-        <br>
-        <br>
-        <span id="errormessage"></span>
+        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+            <h1>POKEMON FINDER</h1>
+        </div>
+            <div style="display: flex; justify-content: center; align-items: center;gap: 10px;">
+            <input id="pokemonname" type="text" placeholder="  Enter Pokemon Name" style="width: 350px; height: 34px;">
+            <button onclick="fetchPoke()" style="height: 30;font-weight: 300;font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;"> Fetch Pokemon</button>
+            </div>
+            <div style="display: flex; justify-content: center;padding-top: 35;">
+            <img src="" alt="Pokemon Image" id="pokemonsprites" style="align-items: center; display: none; width: 200px; height: 200px;">
+            <span id="errormessage" style="font-size:x-large; color: red;"></span>
+            </div>
     </body>
     <script>
-        async function fetchdata() {
+        async function fetchPoke() {
 
-            const pokemonname=document.getElementById("pokemonname").value.toLowerCase();
-            if (pokemonname == "humam") {
-                const imghum = document.getElementById("pokemonsprite");
-                imghum.src = "humam.png";
-                imghum.style.display = "block"; 
-                document.getElementById("errormessage").innerHTML = ""; 
-                return; 
+            const pokemonname=document.getElementById("pokemonname").value.toLowerCase()
+
+            if(pokemonname=="humam"){
+                const img=document.getElementById("pokemonsprites")
+                img.src="humam.png"
+                img.style.display="block";
+                img.style.height="500px";
+                img.style.width="200px";
+                return;
             }
 
-            try {
-                const response=await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonname}`)
-                
-                if (!response.ok){
-                    throw new Error("Could not fetch source")
-                }
+            try{
 
+            const response=await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonname}`)
 
+            if(!response.ok){
+                throw new Error ("Could Not Fetch Data")
+            }
+            const data=await response.json()
+            const pokemonsprite=data.sprites.front_default;
+            const imgele=document.getElementById("pokemonsprites")
+            imgele.src=pokemonsprite;
+            imgele.style.display="block";
+            document.getElementById("errormessage").innerHTML = ""; 
 
-                const data=await response.json()
-                const pokemonsprites=data.sprites.front_default;
-                const imgelement=document.getElementById("pokemonsprite")
-                imgelement.src=pokemonsprites;
-                imgelement.style.display="block";
-
-                
-            } catch (error) {
-              
-               
-                document.getElementById("errormessage").innerHTML=`${pokemonname.value} cannot be found`;
-                
+            }
+            catch(error){
+                document.getElementById("pokemonsprites"
+                ).style.display="none";
+                document.getElementById("errormessage").innerHTML=`Cannot Find ${pokemonname}`
             }
             
-        } 
-
+        }
     </script>
+
 </html>

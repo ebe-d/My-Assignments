@@ -1,0 +1,110 @@
+<html>
+    <body style="background-color: blanchedalmond;">
+    <div id="parent" style="display: flex; height: 500px;gap: 10px;margin-top: 30;">
+        <div id="form" style="background-color: rgb(243, 243, 248); width: 800;">
+            <h2 style="padding-left: 20;">Form Builder</h2>
+            <h3 style="padding-left: 20;">Select Field Type</h3>
+            
+            <select onchange="addbtn()" id="selectdrop" style="width: 300;margin-left: 20px;height: 30;margin-top: -10;">
+                <option>Select</option>
+                <option>Text Input</option>
+                <option>Radio Button</option>
+                <option>CheckBox</option>
+            </select>
+        <div id="checkdiv" style="display:none;" >
+            
+            <h3 style="padding-left: 20;">Input Checkbox Items</h3>
+            <input id="retrievecheck" type="text" style="width: 300;margin-left: 20px;height: 30;margin-top: -10;" placeholder="Input CheckBox">
+            
+        </div>
+            <h3 style="padding-left: 20;">Field Label</h3>
+            <input id="retrieve" type="text" style="width: 300;margin-left: 20px;height: 30;margin-top: -10;" placeholder="Enter Label Name">
+      
+            <br>
+            <button onclick="submitbtn()" style="margin-left: 150;margin-top: 20;justify-content: center;font-size: medium;">Submit</button>
+        </div>
+        <div id="formpre" style="background-color: rgb(244, 244, 244);width:800;">
+            <h2 style="padding-left: 20;">Form Preview</h2>
+            <span id="exe" style="display: flex; justify-content: center;font-size: x-large;font-family: Verdana, Geneva, Tahoma, sans-serif;font-weight: bold;margin-bottom: 30;"></span>
+            <span id="disp" style="display: inline-flexbox;justify-content: center;"></span>
+            <!-- <span id="check" style="display: flex;justify-content: center;"></span> -->
+
+              </div>
+    </div>
+    </body>
+    <script>
+
+        function submitbtn(){
+        
+            function Hataosab() {
+
+    document.getElementById("exe").innerHTML = "";
+    
+}
+function addcheckbox(checkvalue){
+    const newcheck = document.createElement("input");
+                newcheck.setAttribute("type", "checkbox");
+                const parentdiv = document.getElementById("disp"); 
+                const label0 = document.createElement("label");
+                label0.textContent = checkvalue;
+
+                
+                const checkboxContainer = document.createElement("div"); 
+                checkboxContainer.style.display = "flex"; 
+                checkboxContainer.style.alignItems = "center"; 
+                checkboxContainer.style.justifyContent="center"
+
+                checkboxContainer.appendChild(newcheck);
+                checkboxContainer.appendChild(label0);
+                parentdiv.appendChild(checkboxContainer);
+                    
+                
+                }
+        function Labelname(){
+        const Field=document.getElementById("retrieve").value
+        document.getElementById("exe").innerHTML=Field
+        }
+        function InputKhel(){
+            
+        const input=document.getElementById("selectdrop").value
+
+        if(input=="Text Input"){
+            Hataosab();
+            const newele=document.createElement("input")
+            newele.setAttribute("type","text")
+            document.getElementById("disp").appendChild(newele)
+            Labelname()
+        }
+        else if(input=="Radio Button"){
+            Hataosab()
+            const newele=document.createElement("input")
+            newele.setAttribute("type","radio")
+            document.getElementById("disp").appendChild(newele)
+            Labelname()
+        }
+        else if(input=="CheckBox"){
+            
+            Hataosab()
+            const checkvalue=document.getElementById("retrievecheck").value
+            addcheckbox(checkvalue)
+            Labelname()
+        }
+        
+        }
+        
+        InputKhel()
+     
+    }
+    
+    function addbtn(){
+            const int=document.getElementById("selectdrop").value
+            if(int=="CheckBox"){
+                document.getElementById("checkdiv").style.display="grid"
+
+            }
+            else{
+                document.getElementById("checkdiv").style.display="none";
+            }
+        }
+        
+    </script>

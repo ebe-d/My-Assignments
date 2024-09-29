@@ -1,0 +1,110 @@
+<html>
+    <body style="display: flex; justify-content: center; align-items: center;">
+        <div style="display: grid;
+        grid-template-columns: repeat(4, 1fr); 
+        gap: 20px;">
+            
+            <div id="todo" ondragover="allowDrop(event)" ondrop="drop(event)" style="background-color: rgb(248, 248, 250); height: 500px; width: 350px;">
+                <h3 style="margin-left: 12px; margin-top: 9px; font-weight: 200;">To Do</h3>
+                <button onclick="addbtn(event)" style="width: 320px; margin-top: 12px; margin-left: 14px; height: 35px;">Add</button>
+            </div>
+            <div id="inprogress" ondragover="allowDrop(event)" ondrop="drop(event)" style="background-color: rgb(248, 248, 250); height: 500px; width: 350px;">
+                <h3 style="margin-left: 12px; margin-top: 9px; font-weight: 200;">In Progress</h3>
+                <button onclick="addbtn(event)" style="width: 320px; margin-top: 12px; margin-left: 14px; height: 35px;">Add</button>
+            </div>
+            <div id="underreview" ondragover="allowDrop(event)" ondrop="drop(event)" style="background-color: rgb(248, 248, 250); height: 500px; width: 350px;">
+                <h3 style="margin-left: 12px; margin-top: 9px; font-weight: 200;">Under Review</h3>
+                <button onclick="addbtn(event)" style="width: 320px; margin-top: 12px; margin-left: 14px; height: 35px;">Add</button>
+            </div>
+            <div id="finished" ondragover="allowDrop(event)" ondrop="drop(event)" style="background-color: rgb(248, 248, 250); height: 500px; width: 350px;">
+                <h3 style="margin-left: 12px; margin-top: 9px; font-weight: 200;">Finished</h3>
+                <button onclick="addbtn(event)" style="width: 320px; margin-top: 12px; margin-left: 14px; height: 35px;">Add</button>
+            </div>
+
+            <div id="todocomponent" draggable="true" ondragstart="drag(event)" style="background-color: rgb(126, 212, 246); border-radius: 40px; padding-left: 25px; display: none;">
+                <h2 id="titleco"></h2>
+                <div id="diffICO" style="display: flex;">
+                    <h3 id="Descriptionco"></h3>
+                    <button id="levelco" style="background-color: aquamarine; border-radius: 30px; height: 20px; margin-left: 30px; margin-top: 20px;"></button>
+                </div>
+            </div>
+
+            
+            <div id="addcomponent" style="display: none; margin-top: 60px; padding-top: -10px;">
+                Title
+                <input id="title"></input>
+                <br>
+                <br>
+                Description
+                <input id="Description"></input>
+                <br>
+                <br>
+                Level
+                <select id="level" style="width: 100px;">
+                    <option>Select Difficulty</option>
+                    <option>Easy</option>
+                    <option>Medium</option>
+                    <option>Hard</option>
+                </select>
+                <button onclick="hideAddComponent()">Submit</button>
+            </div>
+        </div>
+
+        <script>
+            let uniqueIdCounter = 0;
+            function addbtn(event) {
+                const addComponent = document.getElementById("addcomponent");
+                addComponent.style.display = "block";
+
+                
+                const parentContainerId = event.target.parentNode.id;
+                addComponent.setAttribute("data-target", parentContainerId);
+            }
+
+            function submitinfo() {
+                const title = document.getElementById("title").value;
+                const description = document.getElementById("Description").value;
+                const level = document.getElementById("level").value;
+
+                const originalComponent = document.getElementById("todocomponent");
+                const newComponent = originalComponent.cloneNode(true);
+
+              
+                newComponent.id = "component-" + uniqueIdCounter++;
+                
+                newComponent.querySelector("#titleco").innerHTML = title;
+                newComponent.querySelector("#Descriptionco").innerHTML = description;
+                newComponent.querySelector("#levelco").innerHTML = level;
+
+                newComponent.style.display = "block";
+                newComponent.setAttribute("draggable", "true");
+                newComponent.setAttribute("ondragstart", "drag(event)");
+
+                const parentdivId = document.getElementById("addcomponent").getAttribute("data-target");
+                const parentdiv = document.getElementById(parentdivId);
+
+                parentdiv.appendChild(newComponent);  
+            }
+
+            function hideAddComponent() {
+                const addComponent = document.getElementById("addcomponent");
+                addComponent.style.display = "none";
+                submitinfo();
+            }
+
+            function drag(event){
+                event.dataTransfer.setData("text",event.target.id);
+            }
+            function allowDrop(event){
+                event.preventDefault();
+            }
+            function drop(event){
+                event.preventDefault();
+                const data=event.dataTransfer.getData("text");
+                const draggableele=document.getElementById(data);
+                event.target.appendChild(draggableele);
+
+            }
+        </script>
+    </body>
+</html>

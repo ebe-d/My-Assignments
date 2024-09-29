@@ -1,0 +1,48 @@
+<html>
+    <body style="">
+        <h1 style="display: flex; justify-content: center;">CHANGE BACKGROUND COLOR</h1>
+        <h2 style="display: flex; justify-content: center;" >CLICK ON THE COLORS TO SET IT AS BACKGROUND</h2>
+        <div id="Buttons" style="display:grid; gap:3px;justify-content:center; align-content: center;">
+            <button onclick="setcolor(`red`)" style="background-color: red; width: 250; height: 50;"></button>
+            <button onclick="setcolor(`green`)" style="background-color: green; width: 250; height: 50;"></button>
+            <button onclick="setcolor(`blue`)" style="background-color: blue; width: 250;height: 50;"></button>
+               
+        </div>
+        <div id="addbuttons" style="display: flex; justify-content: center; padding-top: 10;">
+            <button onclick="showdropdown()" style="background-color: white; width: 250; height: 50;">Add Color</button>
+        </div>
+        <div id="dropdown_container" style="margin-top: 20px; display:none; justify-content: center;">
+            <select id="colorDropdown" onchange="addcolor()"  style="width: 200px; height: 40px;">
+                <option>Select a color</option>
+                <option>yellow</option>
+                <option>orange</option>
+                <option>purple</option>
+            </select>
+        </div>
+    </body>
+    <script>
+            function setcolor(color1) {
+                            
+                            document.body.style.backgroundColor=color1;
+            }
+            function showdropdown(){
+                const bg=document.getElementById("dropdown_container")
+                bg.style.display="flex"
+            }
+            function addcolor(){
+                const bgchan=document.getElementById("colorDropdown").value 
+                const parentdiv=document.getElementById("Buttons")
+                const newbutton=document.createElement("button")
+                newbutton.setAttribute("onclick",`setcolor('${bgchan}')`)
+                newbutton.setAttribute("style", `
+                            background-color: ${bgchan};
+                            width: 250px;
+                            height: 50px;
+                        `);
+
+                parentdiv.appendChild(newbutton)
+                
+            }
+
+    </script>
+</html>
