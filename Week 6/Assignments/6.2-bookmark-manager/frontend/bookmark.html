@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Bookmark App</title>
+</head>
+<body>
+    
+    <div class="container">
+        <div style="display: flex; align-items: center; margin-left: 50px; justify-content: center;">
+             
+            <h1 style="display: flex; align-items: center; margin-left: 83px;margin-top: 20px;">
+            
+                Tag It
+            </h1>
+            <span class="bookmark-icon" style="margin-top: 12px; margin-left: -5px; margin-top: 30px; display: inline-block;">
+                <svg id="svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="80" height="45">
+                    <path d="M17 3H7a2 2 0 0 0-2 2v16l5-2.5 5 2.5V5a2 2 0 0 0-2-2z" fill="#6a1b9a"/>
+                </svg>                
+            </span>
+            <button id="logoutButton"  onclick="logout()" style="padding-left: 10px; background: #6a11cb; color: white; border: none; border-radius: 5px; cursor: pointer; margin-right: 5px;width: 80px; height: 25px; margin-top: -70px;">Log Out</button>
+        </div>        
+        <p class="slogan" style="font-size: 1.3em; color: #333; margin: 10px 0 20px;">"Never Lose Track Of It !"</p>
+        <div class="input-container" style="display: flex; margin: 20px 0;">
+            <input type="text" id="linkInput" placeholder="Paste your link here" style="padding: 10px; margin-right: 10px; border: 1px solid #ccc; border-radius: 5px; flex-grow: 1;" />
+            <button id="addButton" type="button" style="padding: 10px; background: #6a11cb; color: white; border: none; border-radius: 5px; cursor: pointer; transition: background 0.3s; width: 75px;">Add</button>
+        </div>
+        <div id="messageBoxBook" class="message-box" style="display: none; margin-top: 15px; padding: 10px; border-radius: 5px; font-size: 1em;"></div>
+        <div id="bookmarks" class="bookmarks-container" style="margin-top: 20px; text-align: left;"></div>
+    </div>    
+    <script src="script.js"></script>
+</body>
+</html> 

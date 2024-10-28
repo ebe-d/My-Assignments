@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Log In</title>
+</head>
+<body>
+    <div class="container">
+        <div style="display: flex; align-items: center; margin-left: px;"> <!-- Use flexbox to align items -->
+            <h1 style="margin-left: 79px; padding-right: 10px;"> <!-- Remove default margin for h1 and add spacing -->
+            Tag It
+            </h1>
+            <span class="bookmark-icon" style="margin-top: 12px; margin-left: -10px; margin-top: 10px;"> <!-- Set margin-top to 0 for better alignment -->
+                <svg id="svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="80" height="45">
+                    <path d="M17 3H7a2 2 0 0 0-2 2v16l5-2.5 5 2.5V5a2 2 0 0 0-2-2z" fill="#6a1b9a"/>
+                </svg>                
+            </span>
+        </div>        
+        <p class="slogan">"Never Lose Track Of It !"</p>
+        <form id="login-form" class="login-form">
+        
+            <label for="username">Username</label>
+            <input type="text" id="username2" name="username" required placeholder="Enter your username">
+            
+            <label for="password">Password</label>
+            <input type="password" id="password2" name="password" required placeholder="Enter your password">
+            
+            <button type="submit">Log In</button>
+            <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
+            <div id="message-box" class="message-box"></div> <!-- Message box -->
+        </form>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

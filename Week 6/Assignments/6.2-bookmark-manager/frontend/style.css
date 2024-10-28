@@ -1,0 +1,174 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to right, #2e20ac, #030411);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  max-width: 100%;
+}
+
+.container {
+  background: rgb(247, 243, 243);
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.5s;
+  max-width: 100%;
+  width: auto;
+  height: auto;
+  text-align: center;
+  margin: 0 auto;
+  display: inline-block;
+  min-width: 300px;
+}
+
+h1 {
+  font-size: 3em;
+  color: #6a11cb;
+  margin: 0;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.slogan {
+  font-size: 1.3em;
+  color: #333;
+  margin: 10px 0 20px;
+}
+
+.signup-form, .login-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.signup-form h2, .login-form h2 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.signup-form label, .login-form label {
+  margin: 10px 0 5px;
+  color: #555;
+}
+
+.signup-form input, .login-form input {
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  transition: border-color 0.3s;
+}
+
+.signup-form input:focus, .login-form input:focus {
+  border-color: #6a11cb;
+  outline: none;
+}
+
+.signup-form button, .login-form button {
+  padding: 10px;
+  background: #6a11cb;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.signup-form button:hover, .login-form button:hover {
+  background: #5b0f99;
+}
+
+.signup-form p, .login-form p {
+  margin-top: 15px;
+  text-align: center;
+  color: #666;
+}
+
+.signup-form a, .login-form a {
+  color: #6a11cb;
+  text-decoration: none;
+}
+
+.signup-form a:hover, .login-form a:hover {
+  text-decoration: underline;
+}
+
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+  }
+  to {
+      opacity: 1;
+  }
+}
+
+.bookmark-icon {
+  display: inline-block;
+  margin-right: -5px;
+  animation: swing 2s ease-in-out infinite;
+}
+
+@keyframes swng {
+  0%, 100% {
+      transform: rotate(0deg);
+  }
+  50% {
+      transform: rotate(15deg);
+  }
+}
+
+.message-box {
+  display: none;
+  margin-top: 15px;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 1em;
+}
+
+.message-box.success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.message-box.error {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+#linkInput {
+  font-size: 15px;
+  width: 300px;
+  height: 25px;
+}
+
+.bookmark-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.bookmark-item img {
+  width: 24px;
+  height: 15px;
+  margin-right: 10px;
+}
+
+.bookmark-item a {
+  margin-right: 10px;
+  color: #6a11cb;
+  text-decoration: none;
+}
+
+.bookmark-item button {
+  padding: 10px;
+  background: #6a11cb;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+  width: 75px;
+}
