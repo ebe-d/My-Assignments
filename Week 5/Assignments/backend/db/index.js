@@ -1,6 +1,6 @@
 const mongoose=require('mongoose');
 
-mongoose.connect('mongodb+srv://ebenezerdsouza:hI6GSAnO9OuGDUU3@cluster0.9onbj.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
+mongoose.connect('mongodb+srv://ebenezerdsouza:pass@cluster0.9onbj.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
 
 const UserSchema=new mongoose.Schema({
     name:{

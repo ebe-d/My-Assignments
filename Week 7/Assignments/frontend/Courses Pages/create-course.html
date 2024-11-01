@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Course - MindVerse</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Create a New Course</h1>
+        <form id="course-form">
+            <input type="text" id="title" placeholder="Course Title" required>
+            <textarea id="description" placeholder="Course Description" required style="height: 20px; font-size: 13px;font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;"></textarea>
+            <input type="text" id="price" placeholder="Price" required>
+            <input type="text" id="image" placeholder="Image Link" required>
+            <div class="checkbox-container">
+                <input type="checkbox" id="myCheckbox">
+                <span style="margin-right: 250px;">Publish</span>
+            </div>
+            <button type="submit">Create Course</button>
+        </form>
+        <div id="messagebox" style="display: none; align-items: center; justify-content: center; margin-top: 18px; color: red;"></div>
+        <p><a style="color: #ffd700;" href="view-courses-creator.html">View My Courses</a></p>
+    </div>
+</body>
+</html>
+<script>
+    document.addEventListener('DOMContentLoaded',()=>{
+
+        const courseform=document.getElementById('course-form');
+        const messagebox=document.getElementById('messagebox');
+
+        if(courseform){
+                courseform.addEventListener('submit',async(event)=>{
+                event.preventDefault();
+
+                const title=document.getElementById('title').value;
+                const description=document.getElementById('description').value;
+                const price=document.getElementById('price').value;
+                const imageLink=document.getElementById('image').value;
+                const published = document.getElementById('myCheckbox').checked;
+
+                try{
+                    const token=localStorage.getItem('token');
+                    if(token){
+                    const response=await fetch('http://127.0.0.1:3000/admin/courses',
+                        {
+                            method:'POST',
+                            headers:{
+                                'Authorization':`retreive from local storage`,
+                                'Content-Type': 'application/json' 
+                            },
+                            body:JSON.stringify({
+                                title:title,
+                                description:description,
+                                price:price,
+                                imagelink:imageLink,
+                                published:published
+                            })
+                        }
+                    );
+                    
+                    const data=await response.json();
+                    if (response.status==200) {
+                        ShowMessage(data.message,'success')
+                    } else {
+                        ShowMessage(data.err,'error')
+                    }
+                }
+                } catch (err) {
+                    ShowMessage(err,'error')
+                }
+            })
+        }
+        function ShowMessage(message,type){
+        messagebox.textContent=message;
+        messagebox.className=`message-box ${type}`;
+        messagebox.style.display='block';
+        setTimeout(() => {
+        messagebox.style.display = 'none';
+    }, 3000); 
+    }
+    })
+   
+</script>

@@ -1,0 +1,108 @@
+/* Reset and basic styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    color: #fff;
+    overflow: hidden; /* Prevents scrolling during overlay fade-out */
+}
+
+/* Overlay for initial black screen fade-out */
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    z-index: 1000;
+    opacity: 1;
+    transition: opacity 4s ease;
+}
+
+#overlay.fade-out {
+    opacity: 0;
+    pointer-events: none; /* Allows interaction with content after fade-out */
+}
+
+/* Fade-in animation for the heading */
+header h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #ffd700;
+    margin-bottom: 0.5rem;
+}
+
+header p {
+    font-size: 1.2rem;
+    font-style: italic;
+    color: #f0e68c;
+    text-align: center;
+    margin-bottom: 0.5rem;
+}
+
+/* Buttons and content styling */
+.buttons-container {
+    display: flex;
+    gap: 2rem;
+    margin-top: 1rem;
+}
+
+.option {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 2rem;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.option h2 {
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    color: #ffd700;
+}
+
+button {
+    display: block;
+    margin: 0.5rem auto;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: black;
+    background-color: #ffd700;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+button:hover {
+    transform: scale(1.05);
+    background-color: #f0e68c;
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+/* Keyframes for fade-in */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

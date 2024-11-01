@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindVerse</title>
+    <link rel="stylesheet" href="course-main.css">
+</head>
+<body>
+    <!-- Black overlay screen for fade-out effect -->
+    <div id="ovenrlay"></div>
+
+    <!-- Main Content -->
+    <header style="display:grid;justify-content:center;align-items:first baseline;margin-left: 30px;">
+        <h1>MindVerse</h1>
+        <p>Where Inspiration Meets Innovation</p>
+    </header>
+
+    <div class="buttons-container">
+        <div class="option">
+            <h2>For Creators</h2>
+            <button onclick="location.href='signup-creator.html'">Sign Up as Creator</button>
+            <button onclick="location.href='login-creator.html'">Login as Creator</button>
+        </div>
+        <div class="option">
+            <h2>For Users</h2>
+            <button onclick="location.href='signup-user.html'">Sign Up as User</button>
+            <button onclick="location.href='login-user.html'">Login as User</button>
+        </div>
+    </div>
+
+    <!-- JavaScript for overlay fade-out effect -->
+    <script>
+        window.addEventListener('load', () => {
+            const overlay = document.getElementById('overlay');
+            overlay.classList.add('fade-out');
+        });
+
+    </script>
+</body>
+</html>

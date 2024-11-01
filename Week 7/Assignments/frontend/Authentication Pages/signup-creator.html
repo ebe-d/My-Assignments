@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup as Creator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <button style="width: 80px;margin-right: 300px;margin-bottom: 40px;" onclick="location.href='course-main.html'">Home</button>
+        <h1>Creator Signup</h1>
+        <p>Join as a creator and inspire the world!</p>
+        <form id="signup-creator-process" >
+            <input id="username" type="text" name="username" placeholder="Username" required>
+            <input id="password" type="password" name="password" placeholder="Password" required>
+            <button type="submit">Sign Up</button>
+        </form>
+        <br>
+        <div id="messagebox" style="display: none;"></div>
+        <a href="login-creator.html" class="back-link">Already a creator? Login here</a>
+    </div>
+</body>
+<script>
+    document.addEventListener('DOMContentLoaded',()=>{
+        const signupform=document.getElementById('signup-creator-process');
+        const messagebox=document.getElementById('messagebox');
+
+    if(signupform){
+        signupform.addEventListener('submit',async(event)=>{
+            event.preventDefault();
+
+            const username=document.getElementById('username').value;
+            const password=document.getElementById('password').value;
+
+            try{
+                const response=await fetch('http://127.0.0.1:3000/admin/signup',
+                {
+                    method:'POST',
+                    headers:{
+                        'username':username,
+                        'password':password
+                    },
+                    body:JSON.stringify({})
+                }
+                );
+                const data=await response.json();
+
+                if(response.status==200){
+                    messagebox.style.display='block';
+                    messagebox.innerHTML=data.message
+                    setTimeout(() => {
+                        window.location.href='../Courses Pages/create-course.html'
+                    }, 2000);
+                }
+                else{
+                    messagebox.style.display='block';
+                    messagebox.innerHTML=data.error
+                }
+            }   
+            catch(err){
+                console.log(err);
+                messagebox.style.display='block';
+                messagebox.innerHTML=err
+            }
+        })
+    }
+    })
+</script>
+</html>

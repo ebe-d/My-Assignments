@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View My Courses - MindVerse</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>My Courses</h1>
+        <div id="courses-list">
+            <!-- Courses will be loaded here dynamically -->
+        </div>
+        <p><a href="create-course.html">Create a New Course</a></p>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            async function loadCourses() {
+                const courseDiv = document.getElementById('courses-list');
+                try {
+                    const response = await fetch('http://127.0.0.1:3000/admin/courses', {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': 'retreive from local storage'
+                        }
+                    });
+                    const data = await response.json();
+
+                    if (response.ok) {
+                        courseDiv.innerHTML = '';
+                        data.courses.forEach((course) => {
+                            const newCourseDiv = document.createElement('div');
+                            newCourseDiv.classList.add('course-card');
+                            newCourseDiv.innerHTML = `
+                                <h2 class="heading">${course.title}</h2>
+                                <input class="heading-input" type="text" value="${course.title}" style="display: none;">
+                                <p class="paragraph">${course.description}</p>
+                                <input class="paragraph-input" type="text" value="${course.description}" style="display: none;">
+                                <p class="price">${course.price}</p>
+                                <input class="price-input" type="text" value="${course.price}" style="display: none;">
+                                <img class="image" src="${course.imageLink || ''}" alt="Course Image">
+                                <input class="image-input" type="text" value="${course.imageLink || ''}" style="display: none;">
+                                <button class="edit-btn">Edit</button>
+                                <button class="save-btn" style="display: none;">Save</button>
+                            `;
+                            courseDiv.appendChild(newCourseDiv);
+                            
+                            const editButton = newCourseDiv.querySelector('.edit-btn');
+                            const saveButton = newCourseDiv.querySelector('.save-btn');
+
+                            editButton.addEventListener('click', () => toggleEdit(newCourseDiv, true));
+                            saveButton.addEventListener('click', () => saveCourse(newCourseDiv, course._id));
+                        });
+                    } else {
+                        courseDiv.innerHTML = `Error loading courses: ${data.message || data.error}`;
+                    }
+                } catch (err) {
+                    courseDiv.innerHTML = `Error: ${err.message}`;
+                }
+            }
+
+            function toggleEdit(courseDiv, editing) {
+                courseDiv.querySelector('.heading').style.display = editing ? 'none' : 'block';
+                courseDiv.querySelector('.heading-input').style.display = editing ? 'block' : 'none';
+                courseDiv.querySelector('.paragraph').style.display = editing ? 'none' : 'block';
+                courseDiv.querySelector('.paragraph-input').style.display = editing ? 'block' : 'none';
+                courseDiv.querySelector('.price').style.display = editing ? 'none' : 'block';
+                courseDiv.querySelector('.price-input').style.display = editing ? 'block' : 'none';
+                courseDiv.querySelector('.image').style.display = editing ? 'none' : 'block';
+                courseDiv.querySelector('.image-input').style.display = editing ? 'block' : 'none';
+                courseDiv.querySelector('.edit-btn').style.display = editing ? 'none' : 'inline';
+                courseDiv.querySelector('.save-btn').style.display = editing ? 'inline' : 'none';
+            }
+
+            async function saveCourse(courseDiv, courseID) {
+                const title = courseDiv.querySelector('.heading-input').value;
+                const description = courseDiv.querySelector('.paragraph-input').value;
+                const price = courseDiv.querySelector('.price-input').value;
+                const imageLink = courseDiv.querySelector('.image-input').value;
+
+                try {
+                    const response = await fetch(`http://127.0.0.1:3000/admin/courses/${courseID}`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MjRiZWZhZTQyOWU1ZTFmMTQ4ZGY3NyIsImlhdCI6MTczMDQ2MTQ0MiwiZXhwIjoxNzMwNTQ3ODQyfQ.kVMl4jek8tP3RmC3MO_RxQK7fUziRyG4yx-9q1seb7E'
+                        },
+                        body: JSON.stringify({ title, description, price, imageLink })
+                    });
+                    const data = await response.json();
+
+                    if (response.ok) {
+                        toggleEdit(courseDiv, false);
+                        courseDiv.querySelector('.heading').textContent = title;
+                        courseDiv.querySelector('.paragraph').textContent = description;
+                        courseDiv.querySelector('.price').textContent = price;
+                        courseDiv.querySelector('.image').src = imageLink;
+                    } else {
+                        courseDiv.innerHTML = `<p style="color:red;">Error saving: ${data.message || data.error}</p>`;
+                    }
+                } catch (err) {
+                    courseDiv.innerHTML = `<p style="color:red;">Error: ${err.message}</p>`;
+                }
+            }
+
+            loadCourses();
+        });
+    </script>
+</body>
+</html>
