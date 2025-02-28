@@ -3,27 +3,25 @@ import {useState} from 'react'
 import { useCAuth,useAuth } from "../Context/AuthContext";
 
 
-function AppBar({users1,getUsers1}){
+function AppBar({users1}){
 
     const navigate=useNavigate();
-    const {checked}=useCAuth();
-    const {users,getUsers}=useAuth();
+    const {checked1}=useCAuth();
+    const {users}=useAuth();
 
     function ShowLogin1(){
    
         navigate('/')
-        getUsers1({
-        })
+        
     }
     function ShowLogin(){
    
         navigate('/')
-        getUsers({
-        })
+        
     }
     
    return <>
-   {checked?
+   {checked1?
     <div style={{backgroundColor:'blueviolet',width:'100vw',height:100,marginTop:-10,marginLeft:-10,display:'flex',justifyContent:'space-between'}}>
         
         <div style={{color:'wheat',fontSize:35,paddingLeft:25,paddingTop:25}}>

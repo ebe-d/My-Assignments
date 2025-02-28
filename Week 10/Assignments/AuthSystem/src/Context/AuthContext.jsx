@@ -5,6 +5,9 @@ import {createContext,useContext,useState} from 'react';
 
   const UserContext=createContext();
   const CheckContext=createContext();
+  
+  export const useAuth = () => useContext(UserContext);
+export const useCAuth = () => useContext(CheckContext);
 
 function AuthContext({children}){
 
@@ -30,6 +33,5 @@ function AuthContext({children}){
       </>
 }
 
-export const useAuth = () => useContext(UserContext);
-export const useCAuth = () => useContext(CheckContext);
+
 export default AuthContext

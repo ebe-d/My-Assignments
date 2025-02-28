@@ -17,7 +17,7 @@ import { useCAuth } from "./Context/AuthContext";
 
 function App() {
   
-  const {checked1}=useCAuth();
+  const {checked1,SetChecked1}=useCAuth();
   const [users1,getUsers1]=useState({
     name:'',
     password:''
@@ -35,7 +35,14 @@ function App() {
     </div>
   }
   
-  
+  function CheckBoxComponent2({children}){
+
+    return <div>
+    <input type='checkbox' id='checkbox' checked={checked1} 
+    onChange={()=>SetChecked1(!checked1)}></input>
+    {children}
+    </div>
+  }
   return (
     <>
     {!checked?
@@ -46,7 +53,7 @@ function App() {
                Context API {checked?'On':'Off'}
     </CheckBoxComponent>
     <Routes>
-      <Route path='/' element={<Login users1={users1} getUsers1={getUsers1}/>}/>
+      <Route path='/' element={<Login users1={users1} getUsers1={getUsers1} checked={checked}/>}/>
       <Route path='/home' element={<Home/>}/>
     </Routes>
     </AuthContext>
@@ -56,9 +63,9 @@ function App() {
     <BrowserRouter>
     <AuthContext>
     <AppBar/>
-    <CheckBoxComponent>
+    <CheckBoxComponent2>
                Context API {checked1?'On':'Off'}
-    </CheckBoxComponent>
+    </CheckBoxComponent2>
     <Routes>
       <Route path='/' element={<Login/>}/>
       <Route path='/home' element={<Home/>}/>
