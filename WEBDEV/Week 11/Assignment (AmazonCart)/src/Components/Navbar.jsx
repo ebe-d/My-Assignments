@@ -24,13 +24,13 @@ function Navbar() {
       {/* Logo */}
       <div style={styles.logoSection} onClick={Goto3}>
         <span style={styles.logo}>
-          <span style={{ color: '#FF9900' }}>Ama</span>zonX
+          <span style={{ color: '#FF9900' }}>EbeBuy</span>Z
         </span>
       </div>
 
       {/* Greeting */}
       <div style={styles.greeting}>
-        <span style={styles.greetText}>Hello, John</span>
+        <span style={styles.greetText}>Welcome Ebe,</span>
       </div>
 
       {/* Icons */}
