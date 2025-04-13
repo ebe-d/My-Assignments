@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes glow {
+  0%, 100% { text-shadow: 0 0 10px #00ff9d, 0 0 20px #00ff9d, 0 0 30px #00ff9d; }
+  50% { text-shadow: 0 0 20px #00ff9d, 0 0 30px #00ff9d, 0 0 40px #00ff9d; }
+}
+
+@keyframes scanline {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+
+@keyframes matrix-rain {
+  0% { background-position: 0% 0%; }
+  100% { background-position: 0% 100%; }
+}
+
+.matrix-bg {
+  background-image: linear-gradient(180deg, 
+    rgba(0, 255, 157, 0.1) 1px, 
+    transparent 1px
+  );
+  background-size: 100% 8px;
+  animation: matrix-rain 20s linear infinite;
+}
+
+.scanline::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(0, 255, 157, 0.15),
+    transparent
+  );
+  animation: scanline 6s linear infinite;
+  pointer-events: none;
+}
