@@ -35,34 +35,51 @@
 // DelayedCall(()=>console.log('hi there'));
 
 
-function Call(user:{
-    name:string,
-    age:number
-}) {
-    console.log(user.name);
+// function Call(user:{
+//     name:string,
+//     age:number
+// }) {
+//     console.log(user.name);
+// }
+
+// let user : {
+//     name:string,
+//     age:number
+// }={ 
+//     name:'ebe',
+//     age:20
+// }
+
+// interface Usertype {
+//     name: string,
+//     age:number
+// }
+
+// function Call2 (user2:Usertype){
+//     console.log(user2.name);
+// }
+
+// const user0:Usertype={
+//     name:'ebe',
+//     age:20
+// }
+
+// Call(user);
+// Call2(user0);
+
+
+interface People {
+    name : String ,
+    age : number,
+    greet: ()=>string,
 }
 
-let user : {
-    name:string,
-    age:number
-}={ 
-    name:'ebe',
-    age:20
+const person : People = {
+    name : 'ebe',
+    age : 34,
+    greet : ()=>{
+        return 'hi'
+    }
 }
 
-interface Usertype {
-    name: string,
-    age:number
-}
-
-function Call2 (user2:Usertype){
-    console.log(user2.name);
-}
-
-const user0:Usertype={
-    name:'ebe',
-    age:20
-}
-
-Call(user);
-Call2(user0);
+console.log(person.greet());

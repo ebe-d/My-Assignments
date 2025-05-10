@@ -2,40 +2,11 @@
 // function TS(name:String){
 //     console.log('Hello',name);
 // }
-// TS('Ebe');
-// function Sum(one:number,two:number){
-//     const sum:number=one+two;
-//     return sum;
-// }
-// const ans=Sum(5, 5);
-// console.log(ans);
-// function IsLegal(Age:number): Boolean{
-//     if(Age>=18){
-//         return true;
-//     }
-//     else{
-//         return false;
-//     }
-// }
-// const result=IsLegal(13);
-// console.log(result?'Eligible':'Not Eligible');
-// function DelayedCall(fn:()=>void){
-//     setTimeout(fn,5000)
-// }
-// DelayedCall(()=>console.log('hi there'));
-function Call(user) {
-    console.log(user.name);
-}
-let user = {
+const person = {
     name: 'ebe',
-    age: 20
+    age: 34,
+    greet: () => {
+        return 'hi';
+    }
 };
-function Call2(user2) {
-    console.log(user2.name);
-}
-const user0 = {
-    name: 'ebe',
-    age: 20
-};
-Call(user);
-Call2(user0);
+console.log(person.greet());
