@@ -46,3 +46,11 @@ enum Direction {
 
 console.log(Direction.Down);
 
+
+enum ResponseStatus {
+    Error=500,
+    Ok=200
+}
+
+console.log(ResponseStatus.Error);
+
