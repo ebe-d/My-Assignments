@@ -1,0 +1,2 @@
+export const DB_URL = 'postgresql://neondb_owner:npg_pO67XLTfsZvb@ep-old-lab-a12hb9m0-pooler.ap-southeast-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require';
+//# sourceMappingURL=config.js.map
