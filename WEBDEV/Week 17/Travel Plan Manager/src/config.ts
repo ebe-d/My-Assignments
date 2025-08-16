@@ -1,1 +1,1 @@
-export const DB_URL='postgresql://neondb_owner:@ep-old-lab-a12hb9m0-pooler.ap-southeast-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require';
+export const DB_URL='postgresql://neondb_owner:557777@ep-old-lab-a12hb9m0-pooler.ap-southeast-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require';
