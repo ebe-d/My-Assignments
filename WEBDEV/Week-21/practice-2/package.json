@@ -1,5 +1,5 @@
 {
-  "name": "practice2",
+  "name": "practice-2",
   "private": true,
   "scripts": {
     "build": "turbo run build",
